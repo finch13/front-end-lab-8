@@ -1,0 +1,149 @@
+@mixin briefMixin($width, $backgroundColor) {
+  background-color: $backgroundColor;
+  width: $width;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $backgroundColorBody;
+}
+
+p,
+td {
+  color: $textColor;
+}
+
+#content {
+  background: $backgroundColorContent;
+  max-width: 75%;
+  margin: 10px auto;
+  padding: 20px;
+
+  p {
+    &:nth-child(4) {
+      img {
+        float: left;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  img {
+    &:nth-child(9) {
+      float: right;
+      margin-left: 10px;
+    }
+  }
+
+  img {
+    &:nth-child(16) {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  color: $headingColor;
+}
+
+img {
+  border: 2px solid $borderImgColor;
+  padding: 3px;
+}
+
+a {
+  color: $linkColor;
+}
+
+.brief {
+  padding: 15px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
+
+  @include briefMixin($widthBrief, $backgroundColorBrief);
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin-bottom: 65px;
+
+  caption {
+    text-align: right;
+  }
+
+  tbody {
+    background-color: $tableBodyColor;
+
+    th {
+      background-color: $tableHeadColor;
+      padding: 10px;
+      text-align: left;
+      text-transform: uppercase;
+      border-right: 1px solid #fff;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+
+    td {
+      padding: 10px;
+      border-bottom: 1px solid $submitTextColor;
+    }
+  }
+}
+
+form {
+  margin-top: -20px;
+
+  input {
+    margin-bottom: 20px;
+    padding: 5px;
+    width: 98%;
+  }
+  span {
+    display: block;
+    text-transform: uppercase;
+    color: $submitTextColor;
+  }
+
+  textarea {
+    width: 98%;
+  }
+
+  button {
+    color: $linkColor;
+    background: $backgroundColorContent;
+    border: 1px solid $linkColor;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  div {
+    &:first-child {
+      display: flex;
+      justify-content: space-between;
+
+      p {
+        flex: 1 1 auto;
+        padding-right: 10px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

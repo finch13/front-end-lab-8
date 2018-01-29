@@ -1,6 +1,7 @@
-@mixin briefMixin($width, $backgroundColor) {
+@mixin briefMixin($width, $backgroundColor, $margin-bottom) {
   background-color: $backgroundColor;
   width: $width;
+  margin-bottom: $margin-bottom;
 }
 
 body {
@@ -68,9 +69,8 @@ a {
   padding: 15px;
   float: left;
   margin-right: 20px;
-  margin-bottom: 10px;
 
-  @include briefMixin($widthBrief, $backgroundColorBrief);
+  @include briefMixin($widthBrief, $backgroundColorBrief, $marginBottomBrief);
 }
 
 table {

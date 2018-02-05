@@ -231,6 +231,9 @@ footer {
   .header__nav li:last-child {
     border-bottom: 1px solid #555;
   }
+  .header__nav a:hover {
+    color: #000;
+  }
 
   /* BANNER__mobile */
   .section__general {
@@ -254,6 +257,9 @@ footer {
   .news > .container {
     grid-template-columns: 1fr;
   }
+  .news__contetn-item a:hover {
+    background-color: #ccc;
+  }
 
   /* FOOTER__mobile */
   .footer__nav li {
@@ -266,5 +272,8 @@ footer {
   }
   .footer__nav ul {
     text-align: center;
+  }
+  .footer__nav a {
+    text-decoration: underline;
   }
 }

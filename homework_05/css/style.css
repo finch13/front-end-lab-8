@@ -139,9 +139,10 @@ footer {
 }
 .footer__nav a {
   color: #fff;
+  text-decoration: underline;
 }
 .footer__nav a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* STYYLE TABLET */

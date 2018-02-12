@@ -15,7 +15,6 @@ if (mess) {
         var attempt = 3;
         var randomNumber = minNum - 0.5 + Math.random() * (maxNum - minNum + 1);
         randomNumber = Math.round(randomNumber);
-        console.log(randomNumber);
         possiblePrize = maxPrize;
 
         middleGame:

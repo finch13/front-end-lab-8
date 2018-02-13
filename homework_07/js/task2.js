@@ -23,7 +23,7 @@ if (mess) {
 Attempts left: ${attempt}
 Total prize: ${totalPrize}$
 Possible prize on current attempt: ${possiblePrize}$`, '');
-            if (userNumber == randomNumber && userNumber.trim() !== '') {
+            if (userNumber == randomNumber && userNumber.trim() !== '' && !userNumber.includes('.')) {
                 totalPrize += possiblePrize;
                 if (confirm('Do you want to continue a game?')) {
                     maxPrize *= 3;

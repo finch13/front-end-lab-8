@@ -1,0 +1,27 @@
+/* Your styles goes here */
+
+body {
+    font-size: 20px;
+}
+
+ul li {
+    display: block;
+    list-style: none;
+    cursor: pointer;
+}
+.liContainer:hover {
+    background-color: #EFEFEF;
+}
+.material-icons {
+    color: #EDBC0B;
+}
+.material-icons.file {
+    color: #bbb;
+}
+.folder-name {
+    margin-left: 5px;
+}
+
+/* #zero-level, #first-level, #second-level {
+    display: none;
+} */

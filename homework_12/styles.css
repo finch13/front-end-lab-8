@@ -1,0 +1,192 @@
+/* Your styles goes here */
+
+* {
+    box-sizing: border-box;
+    font-family: serif;
+}
+body {
+    background-color: #1A1A1D;
+}
+
+h1 {
+    color: #A19E87;
+}
+
+
+/* Tanks preview page */
+
+.tank-items__wrap {
+    margin-top: 45px;
+}
+.tank-item  {
+    width: 280px;
+    position: relative;    
+    float: left;
+    margin-bottom: 20px;
+    padding: 0 20px 20px;
+}
+.tank-item:hover {
+    background-color: #2B2B2B;
+}
+.tank-img {
+    width: 100%;
+}
+.tank-title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+.tank-name {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #D7D2B4; 
+    text-transform: uppercase;
+}
+.tank-name:hover {
+    text-overflow: clip;
+    overflow: visible;
+}
+.tank-level {
+    color: #A19E87;
+}
+.tank-name, .tank-level {
+    font-weight: 700;
+    font-size: 18px;
+}
+.tank-country__wrap {
+    position: relative;
+}
+.tank-country, .tank-name, .tank-level {
+    margin-right: 10px;
+}
+
+
+/* Tank details page  */
+
+.title {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.title, .details-content {
+    color: #A19E87;
+}
+.title__tank-name {
+    text-transform: uppercase;
+}
+.title__tank-name, .title__tank-level {
+    font-size: 25px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.title__tank-countryWrap {
+    position: relative;
+}
+.details-content {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.characteristic caption, .prev {
+    font-size: 20px;
+    font-weight: bold;
+}
+.characteristic {
+    min-width: 50%;
+    text-align-last: left;
+    border-collapse: collapse;
+}
+.characteristic caption {
+    margin-bottom: 20px;
+}
+.characteristic th {
+    border: 1px solid #A19E87;
+    padding: 5px;
+}
+.tank-view {
+    display: flex;
+    flex-direction: column;
+}
+.back_to_list {
+    cursor: pointer;
+}
+
+
+/* Tooltip */
+
+.hint__thumbnail {
+    position: absolute;
+    background-color: rgba(63, 49, 45, 0.5);
+    top: 0;
+    left: 50%;
+    width: 120px;
+    font-size: 12px;
+    line-height: 1.2em;
+    color: #D7D2B4;
+    padding: 5px;
+    text-align: center;
+    margin-left: -60px;
+    z-index: 9;
+}
+.hint__thumbnail::after {
+    content: '';
+    position: absolute;
+    border-top: 8px solid rgba(63, 49, 45, 0.5);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    right: 50%;
+    margin-right: -8px;
+    bottom: -8px;
+}
+
+.hint__country {
+    position: absolute;
+    background-color: rgba(84, 81, 80, 0.8);
+    font-size: 12px;
+    line-height: 1.2em;
+    color: #D7D2B4;
+    padding: 5px;
+    text-align: center;
+    margin-left: -47px;
+    z-index: 9;
+    bottom: 0;
+    left: 50%;  
+    width: 80px;
+}
+.hint__country::after {
+    content: '';
+    position: absolute;
+    border-bottom: 8px solid rgba(84, 81, 80, 0.8);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    right: 50%;
+    margin-right: -8px;
+    top: -8px;
+}
+
+.hint__countryDet {
+    position: absolute;
+    background-color: rgba(84, 81, 80, 0.8);
+    font-size: 12px;
+    line-height: 1.2em;
+    color: #D7D2B4;
+    padding: 5px;
+    text-align: center;
+    margin-left: -10px;
+    z-index: 9;
+    bottom: 0;
+    left: 50%;  
+    width: 80px;
+}
+.hint__countryDet::after {
+    content: '';
+    position: absolute;
+    border-bottom: 8px solid rgba(84, 81, 80, 0.8);
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    left: 10%;
+    margin-right: -8px;
+    top: -8px;
+}

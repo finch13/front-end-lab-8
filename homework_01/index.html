@@ -1,162 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>hw</title>
-  <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>HW_1-CSS-Frameworks</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="styles/bootstrap.min.css">
+
+	<!-- My styles-less -->
+	<link rel="stylesheet/less" href="styles/styles.less">
+	<script src="js/less.min.js" type="text/javascript"></script>
 </head>
 
 <body>
-  <div id="wrapper">
-    <div id="main">
-      <div id="container">
-        <div id="content" role="main">
-          <!-- TODO: Content goes here -->
-          <header>
-            <a href="https://www.epam-group.ru/"><img src="EPAM_logo.svg" alt="EPAM_logo"></a>
-            <nav>
-              <a href="#html"><b>HTML</b></a>
-              <a href="#ol"><b>List</b></a>
-              <a href="#tab"><b>Table</b></a>
-              <a href="#tf"><b>Text formats</b></a>
-              <a href="#bq"><b>Blockquotes</b></a>
-            </nav>
-          </header>
-          <hr>
-          <h1 id="html"><b>HTML Elements</b></h1>            
-          <hr>
-          <section>
-            <h1 id="ol">Ordered List</h1>
-            <ul>
-              <li>
-                <h1>Heading 1</h1>
-                <ul>
-                  <li>
-                    <h2>Heading 2</h2>
-                    <ul>
-                      <li>
-                        <h3>Heading 3</h3>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <ol>
-              <li>
-                <h4>Heading 4</h4>
-                <ol type="A">
-                  <li>
-                    <h5>Heading 5</h5>
-                    <ol type="i">
-                      <li>
-                        <h6>Heading 6</h6>
-                      </li>
-                    </ol>
-                  </li>
-                </ol>
-              </li>
-            </ol>
-          </section>
-          <section>
-            <h3>Definition List</h3>
-            <dl>
-              <dt>defines terms 1</dt>
-              <dd>description 1</dd>
-              <dt>defines terms 2</dt>
-              <dd>description 2</dd>
-            </dl>
-          </section>
-          <section>
-            <h1>Details</h1>
-            <details open="open">
-              <summary>Even more details open</summary>
-              <p>Here are even more details about the details.</p>
-            </details>
-            <details>
-              <summary>Even more details close</summary>
-              <p>Here are even more details about the details.</p>
-            </details>
-          </section>
-          <hr>
-          <section>
-            <h1 id="tab">Table</h1>
-            <table>
-              <thead>
-                <tr>
-                  <th>Elements</th>
-                  <th>Elements</th>
-                  <th>Elements</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><b>strong</b></td>
-                  <td>H<sub>2</sub>O</td>
-                  <td><a href="#">test link</a></td>
-                </tr>
-                <tr>
-                  <td><i>Italic</i></td>
-                  <td><u>Underline.</u></td>
-                  <td><del>delete</del></td>
-                </tr>
-                <tr>
-                  <td><abbr>Abbreviation</abbr></td>
-                  <td>5<sup>3</sup>=125</td>
-                  <td><ins>inserted</ins></td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-          <hr>
-          <section>
-            <h1 id="tf">Text formats</h1>
-            <h3>Article Text</h3>
-            <article>
-              <h1>Article title</h1>
-              <p>Article description</p>
-            </article>
-          </section>
-          <section>
-            <h3>Preformatted Text</h3>
-            <pre>
-<b>Text</b>
-  in a <b>pre</b> element
-    is displayed in a fixed-width
-font, and it preserves
-both           spaces and
-    line breaks
-              </pre>
-          </section>
-          <section>
-            <h3>Code</h3>
-            <pre>
-              <code>
-.wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
-}
-                </code>
-            </pre>
-          </section>
-          <hr>
-          <section>
-            <h1 id="bq">Blockquotes</h1>
-            <p>Let’s keep it simple. Italics are good to help set it off from the body text. Be sure to style the citation.</p>
-            <blockquote>Technology is nothing. What's important is that you have a faith in people, that they're basically good and smart, and if you give them tools, they'll do wonderful things with them.<br>
-              <a href="#">Steve Jobs</a>
-            </blockquote>
-          </section>
-          <p hidden="hidden">And here’s a bit of trailing text.</p>
-          <footer>Copyright Epam Systems</footer>
-          
-        </div>
-      </div>
-    </div>
-  </div>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<header class="container-fluid bg-light border-bottom mb-4">
+				<div class="container">
+					<nav class="navbar navbar-expand-md navbar-light bg-light">
+						<a class="navbar-brand" href="#">
+							<img src="img/logo.png" width="30" height="30" alt="logo">
+						</a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01"
+						 aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="collapse navbar-collapse" id="navbarsExample01">
+							<ul class="navbar-nav mr-auto navigation-list">
+								<li class="nav-item active">
+									<a class="nav-link" href="#">Classes</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">About us</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#">Contacts</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</header>
+
+			<section class="container">
+				<h1 class="text-primary font-weight-bold border-bottom border-primary py-2 mb-4">Yoga Pilates</h1>
+				<div class="row">
+					<img class="col-lg-8 col-md-12 mb-4" src="img/yoga.jpg" alt="yoga">
+					<div class="col-lg-4 col-md-12 mb-4">
+						<h3 class="text-primary font-weight-bold">Class description</h3>
+						<p>This workout uses a series of exercise routines designed to increase your core strength &amp; improve your posture,
+							energy, &amp; flexibility. Pilates work is powered by breath, flow, &amp; centering. By focusing on the mind-body
+							connection &amp; using more efficient form, this workout helps develop a stronger, leaner, healthier body. Appropriate
+							for all fitness levels.
+						</p>
+						<ul>
+							<li>One Personal Trainer</li>
+							<li>Big gym space for training</li>
+							<li>Free tools &amp; props</li>
+							<li>Free locker</li>
+							<li>Free before / after shower</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section class="container">
+				<h2 class="text-primary font-weight-bold border-bottom border-primary py-2 mb-4">Related classes</h2>
+				<div class="row">
+					<div class="col-md-3 col-sm-6 mb-5">
+						<div class="related__item related__item-one">
+							<img class="card-img-top" src="img/cardio-kickbox.jpg" alt="cardio-kickbox">
+							<p class="card-text py-2 text-white relatedItems-desc">Cardio kickboxing</p>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6 mb-5">
+						<div class="related__item related__item-two">
+							<img class="card-img-top" src="img/fitness.jpg" alt="cardio-kickbox">
+							<p class="card-text py-2 text-white relatedItems-desc">Fitness xpress</p>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6 mb-5">
+						<div class="related__item related__item-three">
+							<img class="card-img-top" src="img/zumba.jpg" alt="cardio-kickbox">
+							<p class="card-text py-2 text-white relatedItems-desc">Zumba</p>
+						</div>
+					</div>
+					<div class="col-md-3 col-sm-6 mb-5">
+						<div class="related__item related__item-four">
+							<img class="card-img-top" src="img/bootcamp.jpg" alt="cardio-kickbox">
+							<p class="card-text py-2 text-white relatedItems-desc">Bootcamp</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<footer class="container">
+				<div class="col-12 text-white py-2 footer">
+					&#169;Epam Front-end lab, 2018
+				</div>
+			</footer>
+
+
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>

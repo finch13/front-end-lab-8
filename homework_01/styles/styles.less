@@ -1,10 +1,6 @@
 @import 'variables';
 @import 'related';
 
-/* .navbar-mobile {
-    display: none;
-} */
-
 header {
     .navbar {
         padding: 0;
@@ -17,7 +13,7 @@ header {
     .nav-item {
         
         &:hover, &.active {
-            background-color: #2A74BF;
+            background-color: @navbarItemBGColor;
         }
         .nav-link {
             padding: 1rem 1rem;
@@ -37,12 +33,3 @@ header {
 .footer {
     background-color: @footerColor;
 }
-
-/* @media screen and (max-width: 768px) {
-    .navbar-desktop {
-        display: none;
-    }
-    .navbar-mobile {
-        display: block;
-    }
-} */

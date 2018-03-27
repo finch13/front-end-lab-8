@@ -18,12 +18,17 @@ var configs = assign({}, defaults, options);
 
 // Task 2
 function FighterConstructor({ name, attack, hitpoints }) {
+    this._name = name;
     this._totalHitpoints = hitpoints;
     this._currentHitpoints = this._totalHitpoints;
     this._attack = attack;
     this._blockAttack = false;
+    this._switchMove = false;
 }
 
+FighterConstructor.prototype.getName = function () {
+    return this._name;
+}
 FighterConstructor.prototype.getHitpoints = function () {
     return this._currentHitpoints;
 }
@@ -73,6 +78,12 @@ FighterConstructor.prototype.isAlive = function () {
     } else {
         return false;
     }
+}
+FighterConstructor.prototype.getSwitchMove = function () {
+    return this._switchMove;
+}
+FighterConstructor.prototype.setSwitchMove = function (value) {
+    return this._switchMove = value;
 }
 
 function Champion({ name, attack, hitpoints }) {
@@ -156,6 +167,9 @@ Monster.prototype.fury = function () {
         this.setTotalHitpoints(-reduceHP);
         this.setAttack(increaseAttack);
     } else {
-        console.log('Сan not apply this ability. Low level of health')
+        console.log('Сannt apply this ability. Low level of health')
     }
 }
+
+var hunter = new Champion({ name: 'Rexxar', attack: 10, hitpoints: 60 });
+var beast = new Monster({ name: 'King Krush', attack: 8, hitpoints: 80 });

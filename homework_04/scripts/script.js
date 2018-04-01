@@ -34,7 +34,7 @@ FighterConstructor.prototype.getHitpoints = function () {
 }
 FighterConstructor.prototype.setHitpoints = function (setHP) {
     if (this.isAlive()) {
-        return this._currentHitpoints += setHP;
+        this._currentHitpoints = setHP;
     } else {
         console.log('The game is over. You died');
     }
@@ -44,7 +44,7 @@ FighterConstructor.prototype.getTotalHitpoints = function () {
 }
 FighterConstructor.prototype.setTotalHitpoints = function (setTotalHP) {
     if (this.isAlive()) {
-        return this._totalHitpoints += setTotalHP;
+        this._totalHitpoints = setTotalHP;
     } else {
         console.log('The game is over. You died');
     }
@@ -53,7 +53,7 @@ FighterConstructor.prototype.getAttack = function () {
     return this._attack;
 }
 FighterConstructor.prototype.setAttack = function (damage) {
-    return this._attack += damage;
+    this._attack = damage;
 }
 FighterConstructor.prototype.fight = function (opponent) {
     if (opponent.isAlive()) {
@@ -73,17 +73,13 @@ FighterConstructor.prototype.fight = function (opponent) {
     }
 }
 FighterConstructor.prototype.isAlive = function () {
-    if (this.getHitpoints()) {
-        return true;
-    } else {
-        return false;
-    }
+    return this.getHitpoints() ? true : false;
 }
 FighterConstructor.prototype.getSwitchMove = function () {
     return this._switchMove;
 }
 FighterConstructor.prototype.setSwitchMove = function (value) {
-    return this._switchMove = value;
+    this._switchMove = value;
 }
 
 function Champion({ name, attack, hitpoints }) {
@@ -94,17 +90,17 @@ Champion.prototype.constructor = Champion;
 
 Champion.prototype.fight = function (opponent) {
     let increaseAttack = 1;
-    if (opponent.getHitpoints() - this.getAttack() <= 0) {
-        this.setAttack(increaseAttack);
+    if (opponent.getHitpoints() <= this.getAttack()) {
+        this.setAttack(this._attack + increaseAttack);
     }
     FighterConstructor.prototype.fight.apply(this, arguments);
 }
 Champion.prototype.heal = function () {
     let hpHeal = 5;
     if (this.getHitpoints() + hpHeal <= this.getTotalHitpoints()) {
-        this.setHitpoints(hpHeal);
+        this.setHitpoints(this._currentHitpoints + hpHeal);
     } else if (this.getHitpoints() < this.getTotalHitpoints() && this.getHitpoints() + hpHeal > this.getTotalHitpoints()) {
-        this.setHitpoints(this.getTotalHitpoints() - this.getHitpoints());
+        this.setHitpoints(this._currentHitpoints + (this.getTotalHitpoints() - this.getHitpoints()));
     } else {
         console.log(`You cann't heal. You have maximun HP`);
     }
@@ -113,7 +109,7 @@ Champion.prototype.defence = function () {
     let increaseTotalHP = 1;
     this._blockAttack = true;
     console.log('Damage block is active');
-    this.setTotalHitpoints(increaseTotalHP);
+    this.setTotalHitpoints(this._totalHitpoints + increaseTotalHP);
 }
 
 function Monster({ name, attack, hitpoints }) {
@@ -128,21 +124,21 @@ Monster.prototype.constructor = Monster;
 Monster.prototype.fight = function (opponent) {
     let restoreHP = 0.25;
     let restoreTotalHP = 0.1;
-    if (opponent._currentHitpoints - this._attack <= 0) {
-        this.setHitpoints(Math.floor(opponent.getTotalHitpoints() * restoreHP));
-        this.setTotalHitpoints(Math.floor(opponent.getTotalHitpoints() * restoreTotalHP));
+    if (opponent._currentHitpoints <= this._attack) {
+        this.setHitpoints(this._currentHitpoints + Math.floor(opponent.getTotalHitpoints() * restoreHP));
+        this.setTotalHitpoints(this._totalHitpoints + Math.floor(opponent.getTotalHitpoints() * restoreTotalHP));
     }
 
     if (!opponent.isAlive()) {
         console.log('Opponent died');
     } else if (opponent.isAlive() && this._doubleDamage && this._countSteps < 2) {
-        if (!opponent._blockAttack && opponent.getHitpoints() - this.getAttack() > 0) {
+        if (!opponent._blockAttack && opponent.getHitpoints() > this.getAttack()) {
             this._countSteps++;
-            opponent.setHitpoints(-this.getAttack() * 2);
+            opponent.setHitpoints(opponent._currentHitpoints - this.getAttack() * 2);
             return opponent.getHitpoints();
-        } else if (!opponent._blockAttack && opponent.getHitpoints() - this.getAttack() <= 0) {
+        } else if (!opponent._blockAttack && opponent.getHitpoints() <= this.getAttack()) {
             this._countSteps++;
-            opponent._currentHitpoints = 0;
+            opponent.setHitpoints(0);
             console.log('Opponent died');
             return opponent.getHitpoints();
         } else {
@@ -162,10 +158,10 @@ Monster.prototype.enrage = function () {
 Monster.prototype.fury = function () {
     let reduceHP = 5;
     let increaseAttack = 2;
-    if (this.getHitpoints() - reduceHP > 0) {
-        this.setHitpoints(-reduceHP);
-        this.setTotalHitpoints(-reduceHP);
-        this.setAttack(increaseAttack);
+    if (this.getHitpoints() > reduceHP) {
+        this.setHitpoints(this._currentHitpoints - reduceHP);
+        this.setTotalHitpoints(this._totalHitpoints - reduceHP);
+        this.setAttack(this._attack + increaseAttack);
     } else {
         console.log('Сannt apply this ability. Low level of health')
     }

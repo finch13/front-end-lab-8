@@ -15,9 +15,13 @@ const asyncFn = async () => {
     return result;
 };
 async function doAsyncMagic() {
-    let resultArray = []
+    let resultArray = [];
     for (let i = 0; i < 4; i++) {
-        resultArray.push(await asyncFn())
+        try {
+            resultArray.push(await asyncFn());
+        } catch (error) {
+            console.log(error);
+        }
     }
     console.log(resultArray);
 }
@@ -31,9 +35,13 @@ async function* rangeGen() {
 }
 async function iterateRange() {
     let result = 0;
-    for await (let val of rangeGen()) {
-        result += val;
+    try {
+        for await (let val of rangeGen()) {
+            result += val;
+        }
+        return result;
+    } catch (error) {
+        return console.error(error);
     }
-    return result;
 }
 iterateRange();

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework_07-jQuery</title>
+
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="board">
+            <h1 class="board-header">Gomoku</h1>
+            <div class="process">
+                <div class="move white">
+                    <div class="move-wrap">
+                        <div class="player_img"></div>
+                        <span class="player_text">White's turn</span>
+                    </div>
+                </div>
+                <div class="move black">
+                    <div class="move-wrap">
+                        <div class="player_img"></div>
+                        <span class="player_text">Black's turn</span>
+                    </div>
+                </div>
+                <button class="modal-button new-game new-game-process">New game</button>
+            </div>
+            <div class="board-play_zone">
+
+
+            </div>
+        </div>
+        <div id="modal-window" class="modal-gomoku">
+            <div class="wrap-modal">
+                <p class="modal-text"></p>
+                <div class="modal-buttons">
+                    <button class="modal-button cancel">Cancel</button>
+                    <button class="modal-button new-game">New game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+}
+body, h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-image: -webkit-radial-gradient(center,ellipse cover,rgba(0,0,0,0)35%,rgba(0,0,0,.9)100%), 
+                  url('../img/wood-body.jpeg');
+  background-size: cover;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.board-header {
+  text-align: center;
+  margin-left: -30px;
+  margin-bottom: 20px;
+  color: #655334;
+  font-size: 40px;
+  text-shadow: 0 1px 1px rgba(255,255,255,.5), 0 -1px 1px rgba(0,0,0,.5);
+}
+.board {
+  background-image: url("../img/wood.jpg");
+  background-size: cover;
+  box-shadow: inset 0 0 3px #969292, 0 0 10px #000;
+  padding: 30px 0 0 30px;
+}
+
+.process {
+  display: flex;
+  justify-content: space-between;
+}
+.new-game-process {
+  margin-right: 30px;
+  display: none;
+}
+.new-game-process.active {
+  display: block;
+}
+.move-wrap {
+  display: flex;
+  justify-content: center;
+  background: #fcee93;
+  padding: 10px;
+  border: 1px solid #efab71;
+  border-radius: 5px;
+}
+.player_img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.move.black {
+  display: none;
+}
+
+.board-play_zone {
+  margin-top: 20px;
+  position: relative;
+}
+.board-row {
+  display: flex;
+  justify-content: center;
+}
+.board-row:last-child>.board-column {
+  border-left: none;
+  border-top: none;
+}
+.board-row:nth-last-child(2)>.board-column:not(:last-child) {
+  border-bottom: 1px solid #000;
+}
+
+.board-column {
+  padding: 15px;
+  border-left: 1px solid #000;
+  border-top: 1px solid #000;
+  position: relative;
+}
+.board-column:last-child {
+  border-top: none;
+}
+.board-cell {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: transparent;
+  top: -45%;
+  left: -45%;
+}
+.board-cell.hover-black {
+  background: rgba(89, 86, 81, 0.7);
+  cursor: pointer;
+}
+.board-cell.hover-white{
+  background: rgba(230, 223, 212, 0.5);
+  cursor: pointer;
+}
+
+.board-cell.black,
+.black .player_img {
+  background: linear-gradient(to right, rgb(35, 37, 38), rgb(65, 67, 69));
+}
+.board-cell.white,
+.white .player_img {
+  background: linear-gradient(to right, rgb(239, 239, 187), rgb(212, 211, 221));
+}
+
+
+/* Modal window */
+#modal-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 40px;
+  background: rgba(40,46,61,.9);
+}
+#modal-window.modal-gomoku {
+  display: none;
+}
+#modal-window.modal-gomoku.active {
+  display: block;
+}
+.wrap-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-text {
+  font-size: 60px;
+  color: #dace30;
+}
+.modal-button {
+  background-image: linear-gradient(to bottom, #d97b34, #b8632b);
+  border-radius: 15px;
+  box-shadow: 0px 1px 3px #000000;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.modal-button:hover {
+  background-image: linear-gradient(to bottom, #c23c13, #f06203);
+  text-decoration: none;
+}

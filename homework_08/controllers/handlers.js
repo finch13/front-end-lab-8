@@ -24,7 +24,6 @@ exports.findById = function (req, res) {
 
 exports.create = function (req, res) {
     console.log(req.body);
-    // res.send('post data')
     fs.readFile(storage, function (err, data) {
         if (err) throw err;
         var json = JSON.parse(data);
@@ -34,6 +33,10 @@ exports.create = function (req, res) {
             band: req.body.band,
             instrument: req.body.instrument
         };
+        if (!musician.id || !musician.name || !musician.band || !musician.instrument) {
+            res.status(404).send({ response: 404, message: 'Resource alredy exist' });
+            return;
+        }
         for (let i = 0; i < json.length; i++) {
             // console.log('musician ' + musician.id);
             // console.log('element ' + json[i].id);

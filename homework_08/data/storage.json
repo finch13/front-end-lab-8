@@ -12,10 +12,7 @@
         "instrument": "guitar"
     },
     {
-        "id": 3,
-        "name": "Jimmy Page",
-        "band": "Led Zeppelin",
-        "instrument": "guitar"
+        "id": 3
     },
     {
         "id": 4,

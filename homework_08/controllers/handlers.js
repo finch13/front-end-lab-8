@@ -23,7 +23,7 @@ exports.findById = function (req, res) {
 }
 
 exports.create = function (req, res) {
-    console.log(req.body);
+    console.log('yes');
     fs.readFile(storage, function (err, data) {
         if (err) throw err;
         var json = JSON.parse(data);
@@ -34,14 +34,12 @@ exports.create = function (req, res) {
             instrument: req.body.instrument
         };
         if (!musician.id || !musician.name || !musician.band || !musician.instrument) {
-            res.status(404).send({ response: 404, message: 'Resource alredy exist' });
+            res.status(400).send({ response: 400, message: 'Resource alredy exist' });
             return;
         }
         for (let i = 0; i < json.length; i++) {
-            // console.log('musician ' + musician.id);
-            // console.log('element ' + json[i].id);
             if (musician.id == json[i].id) {
-                res.status(404).send({ response: 404, message: 'Resource alredy exist' });
+                res.sendStatus(400);
                 break;
             } else if (i === json.length - 1) {
                 json.push(musician);

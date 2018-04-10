@@ -5,7 +5,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var routes = require('./routes');
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/rockstars', routes);

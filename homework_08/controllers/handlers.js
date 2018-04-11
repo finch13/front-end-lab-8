@@ -15,7 +15,7 @@ exports.findById = function (req, res) {
             return musician.id === Number(req.params.id);
         });
         if (musician) {
-            res.status(200).send({ response: 200, musician: musician })
+            res.status(200).send({ name: musician.name, band: musician.band })
         } else {
             res.status(404).send({ response: 404, message: 'Musician has been not found' })
         }
@@ -23,7 +23,6 @@ exports.findById = function (req, res) {
 }
 
 exports.create = function (req, res) {
-    console.log('yes');
     fs.readFile(storage, function (err, data) {
         if (err) throw err;
         var json = JSON.parse(data);
@@ -33,13 +32,13 @@ exports.create = function (req, res) {
             band: req.body.band,
             instrument: req.body.instrument
         };
-        if (!musician.id || !musician.name || !musician.band || !musician.instrument) {
-            res.status(400).send({ response: 400, message: 'Resource alredy exist' });
+        if (!musician.id) {
+            res.sendStatus(400);
             return;
         }
         for (let i = 0; i < json.length; i++) {
             if (musician.id == json[i].id) {
-                res.sendStatus(400);
+                res.status(409).send({ message: 'Musician already exist.' });
                 break;
             } else if (i === json.length - 1) {
                 json.push(musician);
@@ -50,7 +49,7 @@ exports.create = function (req, res) {
                 break;
             }
         }
-    })
+    });
 }
 
 exports.update = function (req, res) {
@@ -61,12 +60,13 @@ exports.update = function (req, res) {
             return musician.id === Number(req.params.id);
         });
         if (musician) {
+            musician.id = req.body.id;
             musician.name = req.body.name;
             musician.band = req.body.band;
             musician.instrument = req.body.instrument;
             fs.writeFile(storage, JSON.stringify(json), function (err) {
                 if (err) throw err;
-                res.status(200).send({ response: 200, musician: musician });
+                res.status(200).send({ name: musician.name, band: musician.band });
             })
         } else {
             res.status(404).send({ response: 404, message: 'Musician has been not found' })
@@ -83,10 +83,9 @@ exports.delete = function (req, res) {
                 json = json.filter(function (musician) {
                     return musician.id !== Number(req.params.id);
                 });
-                console.log(json);
                 fs.writeFile(storage, JSON.stringify(json), function (err) {
                     if (err) throw err;
-                    res.status(200).send({ response: 200, message: "Musician has been successfully removed" });
+                    res.status(200).send({ response: 200, message: "Musician has been successfully removed." });
                 });
                 break;
             } else if (i === json.length - 1 && json[i].id !== Number(req.params.id)) {

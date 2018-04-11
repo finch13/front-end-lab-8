@@ -1,12 +1,12 @@
 var express = require('express');
-var router = express.Router();
+var routes = express.Router();
 var handlers = require('./controllers/handlers');
 
-router.get('/', handlers.all);
-router.get('/:id', handlers.findById);
+routes.get('/rockstars', handlers.all);
+routes.get('/rockstar/:id', handlers.findById);
 
-router.post('/', handlers.create);
-router.put('/:id', handlers.update);
-router.delete('/:id', handlers.delete);
+routes.post('/rockstar', handlers.create);
+routes.put('/rockstar/:id', handlers.update);
+routes.delete('/rockstar/:id', handlers.delete);
 
-module.exports = router;
+module.exports = routes;

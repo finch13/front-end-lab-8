@@ -17,69 +17,75 @@ class NumberInput extends Input {
     constructor(placeHolder) {
         super(placeHolder);
         this.type = "number";
-        this.validMessage = [];
-        this.totalValidationResult = null;
         this.valid = false;
     }
 
     setValue(newValue) {
         this._value = newValue;
         this.validMessage = [];
+        this.totalValidationResult = null;
 
         AddRequiredValidation(this);
         AddMaxLengthValidation(this, 10);
         AddNumberValidation(this);
+    }
+}
 
-        if (this.totalValidationResult >= 3) {
-            this.valid = true;
-        } else {
-            this.valid = false;
-        }
-        this.totalValidationResult = 0;
+function checkingTotalValid(input) {
+    if (input.totalValidationResult >= 3) {
+        input.valid = true;
+        input.totalValidationResult = 0;
+    } else {
+        input.valid = false;
     }
 }
 
 const AddRequiredValidation = input => {
     if (typeof input.value === "undefined" || input.value === "") {
-        input.valid = false;
+        input.totalValidationResult += false;
+        input.validMessage.push({ "AddRequiredValidation": false });
     } else {
-        input.valid = true;
+        input.totalValidationResult += true;
+        input.validMessage.push({ "AddRequiredValidation": true });
     }
-    input.totalValidationResult += input.valid;
-    input.validMessage.push({ "AddRequiredValidation": input.valid });
+
+    checkingTotalValid(input);
 }
 const AddMaxLengthValidation = (input, max) => {
     if (input.value.toString().length > max) {
-        input.valid = false;
+        input.totalValidationResult += false;
+        input.validMessage.push({ "AddMaxLengthValidation": false });
     } else {
-        input.valid = true;
+        input.totalValidationResult += true;
+        input.validMessage.push({ "AddMaxLengthValidation": true });
     }
-    input.totalValidationResult += input.valid;
-    input.validMessage.push({ "AddMaxLengthValidation": input.valid });
+
+    checkingTotalValid(input);
 }
 const AddNumberValidation = input => {
     if (typeof input.value !== "number") {
-        input.valid = false;
+        input.totalValidationResult += false;
+        input.validMessage.push({ "AddNumberValidation": false });
     } else {
-        input.valid = true;
+        input.totalValidationResult += true;
+        input.validMessage.push({ "AddNumberValidation": true });
     }
-    input.totalValidationResult += input.valid;
-    input.validMessage.push({ "AddNumberValidation": input.valid });
+
+    checkingTotalValid(input);
 }
 
 let numberInput1 = new NumberInput("Type numbers...");
 let numberInput2 = new NumberInput("Type numbers...");
 let numberInput3 = new NumberInput("Type numbers...");
-numberInput1.setValue("12");
-numberInput2.setValue(1234567891011);
-numberInput3.setValue(345);
 
+numberInput1.setValue("12");
 console.log(numberInput1.valid);
 console.log(numberInput1.validMessage);
+
+numberInput2.setValue(1234567891011);
 console.log(numberInput2.valid);
 console.log(numberInput2.validMessage);
+
+numberInput3.setValue(345);
 console.log(numberInput3.valid);
 console.log(numberInput3.validMessage);
-
-
-

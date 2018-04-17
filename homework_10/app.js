@@ -74,18 +74,16 @@ const AddNumberValidation = input => {
     checkingTotalValid(input);
 }
 
-let numberInput1 = new NumberInput("Type numbers...");
-let numberInput2 = new NumberInput("Type numbers...");
-let numberInput3 = new NumberInput("Type numbers...");
+let numberInput = new NumberInput("Type numbers...");
 
-numberInput1.setValue("12");
-console.log(numberInput1.valid);
-console.log(numberInput1.validMessage);
+numberInput.setValue("12");
+console.log(numberInput.valid);
+console.log(numberInput.validMessage);
 
-numberInput2.setValue(1234567891011);
-console.log(numberInput2.valid);
-console.log(numberInput2.validMessage);
+numberInput.setValue(1234567891011);
+console.log(numberInput.valid);
+console.log(numberInput.validMessage);
 
-numberInput3.setValue(345);
-console.log(numberInput3.valid);
-console.log(numberInput3.validMessage);
+numberInput.setValue(345);
+console.log(numberInput.valid);
+console.log(numberInput.validMessage);

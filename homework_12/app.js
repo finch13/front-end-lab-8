@@ -217,10 +217,10 @@ const sortNameScore = {
             $(this).siblings().removeClass('ascending descending');
             $(this).addClass('hide');
 
-            if ($(this).hasClass('ascending')) {
+            if ($(this).is('.ascending')) {
                 $(this).toggleClass('ascending descending');
                 control.orderDescending(sortParameter);
-            } else if ($(this).hasClass('descending')) {
+            } else if ($(this).is('.descending')) {
                 $(this).toggleClass('ascending descending');
                 control.orderAscending(sortParameter);
             } else {

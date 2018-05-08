@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 // This plugin automatically reload page on changes
 import { hot } from 'react-hot-loader';
 
+import ListAvailableColor from './features/ListAvailableColor';
+
 let colors = [];
+
 
 class App extends Component {
   constructor(props) {
@@ -11,6 +14,9 @@ class App extends Component {
       storage: colors,
       selected: [],
     };
+    this.colorIsFound = false;
+
+
   }
 
   componentDidMount() {
@@ -24,7 +30,7 @@ class App extends Component {
         response.json().then(function (data) {
           colors = data;
           that.setState({ storage: colors })
-          console.log('fetch data colors >>>', data);
+          console.log('fetch data colors >>>', data)
           return data;
         });
       })
@@ -33,6 +39,8 @@ class App extends Component {
       });
   }
 
+
+
   render() {
     return (
       <div className="container">
@@ -40,9 +48,14 @@ class App extends Component {
 
           <div className="colors-add-field">
 
-
           </div>
         </div>
+
+        <ListAvailableColor
+          colorIsFound={this.colorIsFound}
+          data={this.state.storage}
+          handleAdd={this.handleAdd}
+        />
 
       </div>
     );

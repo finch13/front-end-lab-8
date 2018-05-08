@@ -1,0 +1,16 @@
+input[type=text] {
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #CCCCCE;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#search {
+    flex: 2 1 auto;
+    border: none;    
+    margin-right: 50px;
+}

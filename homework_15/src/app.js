@@ -4,6 +4,7 @@ import { hot } from 'react-hot-loader';
 
 import ListAvailableColor from './features/ListAvailableColor';
 import Filter from './features/Filter';
+import AmountColorItems from './features/AmountColorItems';
 
 let colors = [];
 
@@ -71,6 +72,8 @@ class App extends Component {
     this.setState({ storage: tempStorageSearch });
   }
 
+
+
   render() {
     return (
       <div className="container">
@@ -78,6 +81,7 @@ class App extends Component {
           <Filter handleSearch={this.handleSearch} />
           <div className="colors-add-field">
 
+            <AmountColorItems counter={this.state.storage.length} />
           </div>
         </div>
 

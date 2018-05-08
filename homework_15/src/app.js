@@ -5,6 +5,7 @@ import { hot } from 'react-hot-loader';
 import ListAvailableColor from './features/ListAvailableColor';
 import Filter from './features/Filter';
 import AmountColorItems from './features/AmountColorItems';
+import SelectedColors from './features/SelectedColors';
 
 let colors = [];
 
@@ -21,6 +22,7 @@ class App extends Component {
     this.colorIsFound = false;
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
   }
 
   componentDidMount() {
@@ -72,7 +74,23 @@ class App extends Component {
     this.setState({ storage: tempStorageSearch });
   }
 
+  handleAdd(element) {
+    let tempStorageAdd = this.state.storage;
+    let newSelectedStorage = this.state.selected;
 
+    if (newSelectedStorage.length < 10) {
+      newSelectedStorage.push(element);
+      tempStorageAdd.forEach((e, index) => {
+        if (e.id === element.id) {
+          tempStorageAdd.splice(index, 1)
+        }
+      });
+      this.setState({
+        storage: tempStorageAdd,
+        selected: newSelectedStorage
+      });
+    }
+  }
 
   render() {
     return (
@@ -80,7 +98,9 @@ class App extends Component {
         <div className="container-header">
           <Filter handleSearch={this.handleSearch} />
           <div className="colors-add-field">
-
+            <SelectedColors
+              selectiondata={this.state.selected}
+            />
             <AmountColorItems counter={this.state.storage.length} />
           </div>
         </div>

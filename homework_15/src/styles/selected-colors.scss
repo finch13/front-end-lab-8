@@ -1,0 +1,46 @@
+.selected-color__container {
+    display: inline-block;    
+    width: 40px;
+    height: 50px;
+    position: relative;
+}
+.selected-color__container:last-child {
+    width: 50px;
+}
+.selected-color__item {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.unselected-color__container {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 5px;
+} 
+.first_item {
+    position: relative;
+    left: 50px;
+    border: 1px solid #DBD7F4;
+}
+.second_item {
+    position: relative;
+    left: 25px;
+    border: 1px solid #A7B2DD;
+}
+.third_item {
+    position: relative;
+    border: 1px solid #8585CC;
+}
+
+.remove-color {
+    color: #fff;
+    background-color: #EB3324;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 let SelectedColors = function (props) {
+  let maxColorsOnPage = 5;
 
   if (props.selectiondata.length === 0) {
     return (
@@ -12,18 +13,18 @@ let SelectedColors = function (props) {
     );
   } else {
     let currentArrayColors = null;
-    if (props.selectiondata.length <= 5) {
+    if (props.selectiondata.length <= maxColorsOnPage) {
       currentArrayColors = props.selectiondata;
     } else {
       let tempSelectionStorage = props.selectiondata;
-      currentArrayColors = tempSelectionStorage.slice(-5);
+      currentArrayColors = tempSelectionStorage.slice(-maxColorsOnPage);
     }
     return (
       <ul className="selected-colors">
         {
           currentArrayColors.map(function (element) {
             let colorVariable = element.color;
-            let liStyle = {
+            let styleElement = {
               backgroundColor: colorVariable
             };
             return (
@@ -31,7 +32,7 @@ let SelectedColors = function (props) {
                 key={element.id}
               >
                 <div className="selected-color__item"
-                  style={liStyle}
+                  style={styleElement}
                 >
                   <i className="material-icons remove-color"
                     onClick={() => props.handleDelete(element)}
@@ -39,7 +40,6 @@ let SelectedColors = function (props) {
                     clear
                   </i>
                 </div>
-                <span>{element.id}</span>
               </li>
             );
           })

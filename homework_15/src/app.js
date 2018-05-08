@@ -9,20 +9,18 @@ import SelectedColors from './features/SelectedColors';
 
 let colors = [];
 
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initial: colors,
       storage: colors,
-      temporaryStorage: colors,
       selected: [],
     };
     this.colorIsFound = false;
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -35,8 +33,9 @@ class App extends Component {
         }
         response.json().then(function (data) {
           colors = data;
-          console.log('fetch data colors >>>', colors)
-          that.setState({ storage: colors });
+          that.setState({ storage: colors })
+          console.log('fetch data colors >>>', data);
+          return data;
         });
       })
       .catch(function (err) {
@@ -77,8 +76,9 @@ class App extends Component {
   handleAdd(element) {
     let tempStorageAdd = this.state.storage;
     let newSelectedStorage = this.state.selected;
+    let maxColorsInArray = 10;
 
-    if (newSelectedStorage.length < 10) {
+    if (newSelectedStorage.length < maxColorsInArray) {
       newSelectedStorage.push(element);
       tempStorageAdd.forEach((e, index) => {
         if (e.id === element.id) {
@@ -92,6 +92,26 @@ class App extends Component {
     }
   }
 
+  handleDelete(element) {
+    let temp = this.state.storage;
+    let tempSelectedDel = this.state.selected;
+
+    tempSelectedDel.forEach((e, index) => {
+      if (e.id === element.id) {
+        temp.push(element);
+        temp.sort(function (a, b) {
+          return a.id - b.id;
+        });
+        tempSelectedDel.splice(index, 1);
+      }
+    })
+
+    this.setState({
+      storage: temp,
+      selected: tempSelectedDel,
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -100,6 +120,7 @@ class App extends Component {
           <div className="colors-add-field">
             <SelectedColors
               selectiondata={this.state.selected}
+              handleDelete={this.handleDelete}
             />
             <AmountColorItems counter={this.state.storage.length} />
           </div>

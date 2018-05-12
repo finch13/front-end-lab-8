@@ -8,7 +8,7 @@ module.exports = {
             title: "JS-Modules",
             template: "./src/index.html"
         }),
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('styles.css')
     ],
     output: {
         filename: "bundle.js"

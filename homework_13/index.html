@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="blogApp" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <script src="./lib/angular.min.js"></script>
+  <script src="./src/app.js"></script>
+  <script src="./src/data.js"></script>
+</head>
+
+<body ng-controller="blogItems as $ctrl">
+
+  <div class="wrapper">
+    <h1 class="blog-title">My blog</h1>
+
+    <div class="blog-content__wrap">
+
+      <div class="blog-content">
+        <blog-post ng-repeat="blog in $ctrl.getBlogItems() | 
+            filter: {title: searchTitle} " title="blog.title" categories="blog.categories" description="blog.description"
+          image="blog.image" sorttag="$ctrl.filterBy">
+        </blog-post>
+
+        <button ng-click="$ctrl.addNewPostForm()" class="add-post">
+          Add post
+        </button>
+        <form class="form-add_item" ng-show="showAddForm">
+          <div class="title-row row-add">
+            <label>Title</label>
+            <div class="form-field">
+              <input type="text" ng-model="title" placeholder="Title ..." class="new-post-info">
+            </div>
+          </div>
+          <div class="categ-row row-add">
+            <label>Categories</label>
+            <div class="form-field">
+              <input type="text" ng-model="categ" placeholder="Categories ..." class="new-post-info">
+            </div>
+          </div>
+          <div class="desc-row row-add">
+            <label>Description</label>
+            <div class="form-field">
+              <textarea rows="1" ng-model="description" placeholder="Description ..." class="new-post-info"></textarea>
+            </div>
+          </div>
+          <div class="photo-row row-add">
+            <label>Photo</label>
+            <div class="form-field">
+              <input id="photo-field" type="text" ng-model="photo" placeholder="file name ...">
+            </div>
+          </div>
+          <div class="add-item">
+            <button ng-click="$ctrl.addBlogItem()">add</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="search-sidebar">
+        <div class="filter-by-categories">
+          <p class="filter-title">Categories</p>
+          <ul ng-repeat="filtredItem in $ctrl.getFiltredItems()" class="filter-list">
+            <li ng-click="$ctrl.filterBy(filtredItem)">
+              {{filtredItem}}
+            </li>
+          </ul>
+        </div>
+
+        <div class="search-by-title">
+          <p class="search-title">Search by title</p>
+          <input ng-model="searchTitle" class="search-blog_title" type="text" placeholder="blog title...">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="text/ng-template" id="blog.html">
+    <div class="blog-item">
+      <div class="title-wrap">
+        <img ng-src="assets/{{image}}" alt="photo">
+        <div ng-hide="editorEnabled" class="blog-item__title">
+          {{title}}
+        </div>        
+        <input 
+          ng-show="editorEnabled" 
+          ng-model="editableTitle" 
+          class="edit-title" 
+          type="text"
+        >
+      </div>
+      <span 
+        ng-repeat="categorie in categories" 
+        ng-click="sorttag(categorie)" 
+        class="blog-item__tag"
+      >
+        {{categorie}}
+      </span>
+      
+      <div ng-hide="editorEnabled">
+        {{description}}
+      </div>
+      <div ng-show="editorEnabled" class="edit-description">
+        <textarea ng-model="editableDescription">
+          {{description}}
+        </textarea>
+      </div>
+      <div class="blog-item__edit">
+        <button ng-click="enableEditor($event)">edit</button>
+      </div>
+    </div>
+  </script>
+
+</body>
+
+
+</html>

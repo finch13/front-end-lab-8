@@ -1,0 +1,148 @@
+* {    
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+ul li {
+    list-style-type: none;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.blog-title {
+    color: #A2A2A2;
+    text-align: center;
+    text-transform: uppercase;
+}
+.blog-content__wrap {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.blog-content {
+    width: 940px;
+}
+
+
+/* Styling blog item */
+.blog-item, 
+.form-add_item {
+    background-color: #E9E9E9;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+.title-wrap {
+    position: relative;
+}
+.blog-item__title {
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 10px 15px;
+    position: absolute;
+    width: 100%;
+    bottom: 4px;
+}
+.edit-title {
+    width: 98%;
+    padding: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+}
+.blog-item__tag {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: inline-block;
+    color: #0279C5;
+    margin-right: 10px;
+}
+.edit-description textarea {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.blog-item__edit {
+    text-align: right;
+}
+.blog-item__edit>button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    color: #3A7EC6;
+}
+
+
+/* Styling form */
+.form-add_item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.row-add {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.new-post-info,
+#photo-field {
+    width: 600px;
+    padding: 10px;
+}
+.desc-row textarea {
+    height: 100px;
+    outline: none;
+}
+.new-post-info.not-filled {
+    border: 1px solid red;
+}
+.add-item {
+    text-align: center;
+}
+.add-item>button,
+.add-post {
+    color: #3A7EC6;
+    border: 1px solid #3A7EC6;
+    padding: 8px 30px;
+    background-color: transparent;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.add-post.active {
+    display: none;
+}
+.form-field {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.empty-field {
+    font-size: 12px;
+    color: red;
+    margin-right: 5px;
+}
+
+/* Search field */
+.search-sidebar {
+    margin-left: 10px;
+    border: 1px solid #858585;
+    padding: 20px 10px;
+}
+.filter-list li {
+    text-decoration: none;
+    color: #0279C5;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.search-blog_title {
+    border: 1px solid #ECECEC;
+    padding: 10px;
+}

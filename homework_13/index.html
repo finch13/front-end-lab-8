@@ -83,24 +83,31 @@
   <script type="text/ng-template" id="blog.html">
     <div class="blog-item">
       <div class="title-wrap">
+        <input 
+          ng-show="editorEnabled" ng-model="editableImage" 
+          class="edit-image" type="text"
+        >
         <img ng-src="assets/{{image}}" alt="photo">
         <div ng-hide="editorEnabled" class="blog-item__title">
           {{title}}
         </div>        
         <input 
-          ng-show="editorEnabled" 
-          ng-model="editableTitle" 
-          class="edit-title" 
-          type="text"
+          ng-show="editorEnabled" ng-model="editableTitle" 
+          class="edit-title" type="text"
         >
       </div>
-      <span 
-        ng-repeat="categorie in categories" 
-        ng-click="sorttag(categorie)" 
-        class="blog-item__tag"
-      >
-        {{categorie}}
-      </span>
+      <div>
+        <span
+          ng-hide="editorEnabled" ng-repeat="categorie in categories" 
+          ng-click="sorttag(categorie)" class="blog-item__tag"
+        >
+          {{categorie}}
+        </span>
+        <input 
+          ng-show="editorEnabled" ng-model="editableCateg" 
+          class="edit-categ" type="text"
+        >
+      </div>
       
       <div ng-hide="editorEnabled">
         {{description}}

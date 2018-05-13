@@ -54,6 +54,18 @@ ul li {
     bottom: 20px;
     left: 10px;
 }
+.edit-categ {
+    width: 50%;
+    padding: 10px;
+    margin: 20px 0;
+}
+.edit-image {
+    position: relative;
+    width: 50%;
+    padding: 10px;
+    top: 50px;
+    left: 10px;
+}
 .blog-item__tag {
     margin-top: 5px;
     margin-bottom: 20px;

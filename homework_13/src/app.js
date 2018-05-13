@@ -1,6 +1,5 @@
 var app = angular.module('blogApp', []);
 app.controller('blogItems', function ($scope) {
-  console.log($scope)
 
   $scope.defaultPosts = defaultPosts;
   $scope.filtredItems = ['All'];
@@ -9,7 +8,7 @@ app.controller('blogItems', function ($scope) {
   let addPostBtn = angular.element(document.querySelector('.add-post'));
   let formInputFields = angular.element(document.querySelectorAll('.new-post-info'));
 
-  function addFilterCategories() {
+  $scope.addFilterCategories = function() {
     defaultPosts.forEach(e => {
       let element = e.categories;
       for (let i = 0; i < element.length; i++) {
@@ -24,13 +23,24 @@ app.controller('blogItems', function ($scope) {
   function splitCategString(categ) {
     let arr = [];
     let arrayOfStrings;
-    categ.includes(' ') ?
-      arrayOfStrings = categ.split(' ') :
-      arrayOfStrings = categ.split(',');
+    if(categ.includes(',') || categ.includes(' ')) {
+      if(categ.includes(', ')) {
+        console.log('context 1')
+        arrayOfStrings = categ.split(',');
+      } else if(categ.includes(',')) {
+        console.log('context 2')
+        arrayOfStrings = categ.split(',');
+      } else if(categ.includes(' ')) {
+        console.log('context 3')
+        arrayOfStrings = categ.split(' ');
+      } 
 
-    arrayOfStrings.forEach(e => {
-      arr.push(e);
-    });
+      arrayOfStrings.forEach(e => {
+        arr.push(e);
+      });
+    } else {
+      arr.push(categ)
+    }   
 
     return arr;
   }
@@ -59,7 +69,7 @@ app.controller('blogItems', function ($scope) {
     return $scope.defaultPosts;
   }
   this.getFiltredItems = function () {
-    addFilterCategories();
+    $scope.addFilterCategories();
     return $scope.filtredItems;
   }
   this.addNewPostForm = function () {
@@ -105,7 +115,7 @@ app.controller('blogItems', function ($scope) {
         $scope.description = '';
         $scope.photo = '';
 
-        addFilterCategories();
+        $scope.addFilterCategories();
       }
     });
   };
@@ -120,21 +130,28 @@ app.directive('blogPost', function () {
       categories: "=",
       description: "=",
       image: "=",
-      sorttag: "=",      
+      sorttag: "=",  
     },
     link: function (scope) {
       
       scope.editorEnabled = false;
       scope.editableTitle = scope.title;
       scope.editableDescription = scope.description;
+      scope.editableCateg = scope.categories;
+      scope.editableImage = scope.image;
       
       scope.enableEditor = function (event) {
         let editBtn = angular.element(event.target);
-
+        
         scope.editorEnabled = !scope.editorEnabled;
         scope.editorEnabled ? editBtn.text('save') : editBtn.text('edit')
         scope.title = scope.editableTitle;
         scope.description = scope.editableDescription;
+        scope.image = scope.editableImage;
+        if(typeof scope.editableCateg === 'string') {
+          let newCateg = scope.editableCateg.split(',');
+          scope.categories = newCateg;
+        }
       };
     }
   }
